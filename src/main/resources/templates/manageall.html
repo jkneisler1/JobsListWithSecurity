@@ -37,21 +37,19 @@ hr {
         <!-- Process HTML Page -->
         <br />
         <h4>Users</h4>
-        <div class="row">
-            <div class="col-sm-5">
-                <table>
-                    <tr>
-                        <th>User Name</th>
-                    </tr>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.lastName}"></td>
-                        <td>
-                            <a th:href="@{update_user/{id}(id=${user.userID})}">Update</a>
-                            <a th:href="@{detail_user/{id}(id=${user.userID})}">Details</a>
-                            <a th:href="@{delete_user/{id}(id=${user.userID})}">Delete</a>
-                        </td>
-                    </tr>
-                </table>
+        <div th:each="user : ${users}">
+            <div class="row">
+                <div class="col-sm-1"><b>User Name:</b></div>
+                <div class="col-sm-1"><scan th:text="${user.lastName}">></scan></div>
+                <div class="col-sm-1"><a th:href="@{update_user/{id}(id=${user.userID})}">Update</a></div>
+                <div class="col-sm-1"><a th:href="@{detail_user/{id}(id=${user.userID})}">Details</a></div>
+                <div class="col-sm-1"><a th:href="@{delete_user/{id}(id=${user.userID})}">Delete</a></div>
+                <div class="row">
+
+                    </div th:each="job : ${user.jobs}">
+
+                    </div>
+                </div>
             </div>
             <br />
             <div class="col-sm-7">
