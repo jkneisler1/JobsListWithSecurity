@@ -69,9 +69,14 @@ public class HomeController {
 
     @RequestMapping("/managetest")
     public String managetest(Model model, @RequestParam(name="pwd") String pwd) {
+        System.out.println(pwd);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String input_pwd = passwordEncoder.encode(pwd);
-        if (userRepository.findByPasswordEquals(pwd)) {
+        System.out.println(input_pwd);
+        User usr = userRepository.findByPasswordMatches(input_pwd);
+        if (userRepository.findByPasswordEquals(input_pwd)) {
+            model.addAttribute("user", userRepository.findByPasswordMatches(input_pwd));
+            model.addAttribute("job", jobRepository.findByUser_Id(usr.getId()));
             return "manageall";
         }
         return "list";
