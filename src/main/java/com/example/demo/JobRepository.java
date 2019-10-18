@@ -3,9 +3,13 @@ package com.example.demo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
+//import java.util.Iterator;
 
 public interface JobRepository extends CrudRepository<Job, Long> {
-    ArrayList<Job> findJobByTitle(String title);
-    ArrayList<Job> findJobByAuthor(String author);
-    // ArrayList<Job> removeById(Long id);
+    //Iterator<Job> findJobByTitleContaining(String title);
+    //Iterator<Job> findById(long id);
+    //ArrayList<Job> findJobByTitleContaining(String title);
+    //ArrayList<Job> findAllByTitleContaining(String title);
+    ArrayList<Job> findJobsByTitleContaining(String title);
+    ArrayList<Job> findById(long id);
 }

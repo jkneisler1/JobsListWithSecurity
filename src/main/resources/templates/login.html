@@ -4,7 +4,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Jobs Form Page</title>
+    <title>User Login Page</title>
 
     <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,23 +19,40 @@
 
     <div class="container">
         <!-- Header -->
-        <h2>Jobs Form Page</h2>
-        <a href="/secure">Secure Page</a>
+        <h2>Login Page</h2> <h4>
+        <i>Please Sign In</i></h4>
+        <br />
         <!-- End Header -->
 
         <!-- Process HTML Page -->
-
+        <div th:if="${param.error}">Invalid username or password</div>
+        <div th:if="${param.logout}">You have been logged out</div>
         <br />
-        <div th:replace="base ::logout"></div>
-        <!-- End Process HTML Page -->
+        <form th:action="@{/login}" method="post">
+            <div class="row">
+                <div class="col-md-2"><b>User Name:</b></div><div class="col-md-10"><input type="text" name="username" autofocus /></div><br />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"><b>Password:</b></div><div class="col-md-10"><input type="password" name="password" /></div><br />
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2"><input type="submit" value="Sign in" /></div>
+            </div>
+        </form>
+        <br /><br />
+        <a title="Register" href="/register">New Users, Please register</a>
+        <!-- End Process HTML Page-->
 
         <!-- Footer -->
         <div th:replace="base :: footer"></div>
         <!-- End Footer -->
+
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
     <div th:fragment="jsFooter"></div>
-        <!-- END JS code -->
+    <!-- END JS code -->
 </body>
 </html>

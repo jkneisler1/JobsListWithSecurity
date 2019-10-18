@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Page</title>
+
+    <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <!-- END Link to the bootstrap stylesheet -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div th:replace="base :: navlinks"></div>
+    <!-- End Navigation Bar -->
+
+    <div  class="container">
+
+        <!-- Header -->
+        <br />
+        <h2>User Information Page</h2>
+        <br /><br />
+        <!-- End Header -->
+
+        <!-- Process HTML Page -->
+        <div class="row">
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+            <div class="col-md-2"><b>First Name:</b></div>
+            <div class="col-md-2"><span th:text="${user.firstName}"></span></div><br />
+            <div class="col-md-2"><b>Last Name:</b></div>
+            <div class="col-md-2"><span th:text="${user.lastName}"></span></div><br />
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+            <div class="col-md-2"><b>Phone Number:</b></div>
+            <div class="col-md-2"><span th:text="${user.phoneNumber}"></span></div><br />
+            <div class="col-md-2"><b>Email:</b></div>
+            <div class="col-md-2"><span th:text="${user.email}"></span></div><br />
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+            <div class="col-md-2"><b>User Role(s):</b></div>
+            <div class="col-md-2">
+                <div th:each="role : ${user.roles}" >
+                    <span th:text="${role.role}"></span>
+                </div><br />
+            </div>
+            <div class="col-md-2"><b>User Name:</b></div>
+            <div class="col-md-2"><span th:text="${user.username}"></span></div><br />
+            <!-- <div class="col-md-2"><b>Authenticated as:</b></div>
+            <div class="col-md-2">
+                <div sec:authorize="isAuthenticated()"><span sec:authentication="name"></span></div>
+            </div> -->
+            <div class="col-md-2"><span>&nbsp&#9670;&nbsp</span></div>
+        </div>
+        <br />
+        <div th:replace="base ::logout"></div>
+        <!-- Process HTML Page -->
+
+        <!-- Footer -->
+        <div th:replace="base :: footer"></div>
+        <!-- End Footer -->
+    </div>
+
+    <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
+    <div th:fragment="jsFooter">
+    </div>
+    <!-- END JS code -->
+</body>
+</html>

@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="User_Data")
@@ -39,17 +40,20 @@ public class User {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Job> jobs;
+
     public User() {
     }
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String phoneNumber) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.enabled = enabled;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEnabled(enabled);
+        this.setUsername(username);
+        this.setphoneNumber(phoneNumber);
     }
 
     public long getId() {
@@ -123,5 +127,21 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
     }
 }

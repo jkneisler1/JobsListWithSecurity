@@ -4,7 +4,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Jobs Form Page</title>
+    <title>Show Page</title>
 
     <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,16 +18,28 @@
     <!-- End Navigation Bar -->
 
     <div class="container">
+
         <!-- Header -->
-        <h2>Jobs Form Page</h2>
-        <a href="/secure">Secure Page</a>
+        <h2>Course Details</h2>
+        <br />
         <!-- End Header -->
 
         <!-- Process HTML Page -->
-
+        <div class="row">
+            <div class="col-md-2"><b>Title:</b></div><div class="col-md-10"><span th:text="${course.title}"></span></div><br />
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Instructor:</b></div><div class="col-md-10"><span th:text="${course.instructor}"></span></div><br />
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Description:</b></div><div class="col-md-10"><span th:text="${course.description}"></span></div><br />
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Credits:</b></div><div class="col-md-10"><span th:text="${course.credit}"></span></div><br />
+        </div>
         <br />
-        <div th:replace="base ::logout"></div>
-        <!-- End Process HTML Page -->
+        <div th:replace="base :: logout"></div>
+        <!-- End Process HTML Page-->
 
         <!-- Footer -->
         <div th:replace="base :: footer"></div>
@@ -36,6 +48,6 @@
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
     <div th:fragment="jsFooter"></div>
-        <!-- END JS code -->
+    <!-- END JS code -->
 </body>
 </html>

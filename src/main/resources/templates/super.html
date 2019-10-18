@@ -4,7 +4,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Jobs Form Page</title>
+    <title>Supervisor Page</title>
 
     <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,24 +18,26 @@
     <!-- End Navigation Bar -->
 
     <div class="container">
+
         <!-- Header -->
-        <h2>Jobs Form Page</h2>
-        <a href="/secure">Secure Page</a>
+        <h2>Supervisor Page</h2> <h4><i>Welcome</i></h4>
+        <br />
         <!-- End Header -->
 
         <!-- Process HTML Page -->
 
         <br />
-        <div th:replace="base ::logout"></div>
-        <!-- End Process HTML Page -->
+        <div th:replace="base :: logout"></div>
+        <!-- End Process HTML Page-->
 
         <!-- Footer -->
         <div th:replace="base :: footer"></div>
         <!-- End Footer -->
+
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
     <div th:fragment="jsFooter"></div>
-        <!-- END JS code -->
+    <!-- END JS code -->
 </body>
 </html>

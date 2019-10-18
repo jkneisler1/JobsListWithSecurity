@@ -2,10 +2,7 @@ package com.example.demo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,20 +12,25 @@ public class Job {
     private long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Column(name = "posted_date")
     private LocalDateTime postedDate;   // Date the job was posted
-    private String title;               // Job title
-    private String description;         // Job description
-    private String author;              // Person submitting the job
 
+    @Column(name = "title", nullable = false)
+    private String title;               // Job title
+
+    @Column(name = "description")
+    private String description;         // Job description
+
+    @ManyToOne()
+    private User user;
 
     public Job() {
     }
 
-    public Job(LocalDateTime postedDate, String title, String description, String author, String phone, String email) {
+    public Job(LocalDateTime postedDate, String title, String description) {
         this.postedDate = postedDate;
         this.title = title;
         this.description = description;
-        this.author = author;
     }
 
     public long getId() {
@@ -63,12 +65,11 @@ public class Job {
         this.description = description;
     }
 
-    public String getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
-
 }

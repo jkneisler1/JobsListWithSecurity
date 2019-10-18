@@ -12,63 +12,100 @@
     <!--End Bootstrap CSS-->
 </head>
 <body>
-<div th:fragment="navlinks">
-    <nav class="navbar navbar-expand-sm bg-light">
-        <ul class="navbar-nav">
-            <!-- Links -->
-            <li class="nav-item">
-                <a class="nav-link" href="/">View Course Listings</a>
-            </li>
-            <li><span>&nbsp&#9670;&nbsp</span></li>
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">View Settings</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/add">Add A Course</a>
-                    <a class="dropdown-item" href="/secure">Review User Settings</a>
-                    <a class="dropdown-item" href="/secureform">Modify User Settings</a>
-                </div>
-            </li>
-            <!-- Separator -->
-            <li><span>&nbsp&#9670;&nbsp</span></li>
-            <!-- Search Boxes and Buttons -->
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" th:action="@{/processCourseByInstructor}" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Enter Instructor Name" aria-label="Search Instructor" name="search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retrieve Course(s)</button>
-                </form>
-            </li>
-            <li><span>&nbsp&#9670;&nbsp</span></li>
-            <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" th:action="@{/processCourseByTitle}" method="post">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Enter Course Title" aria-label="Search Class Title" name="search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retrieve Course(s)</button>
-                </form>
-            </li>
-        </ul>
-    </nav>
-</div>
+    <div th:fragment="navlinks">
+        <nav class="navbar navbar-expand-sm bg-light">
+            <ul class="navbar-nav">
+                <!-- Links -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/secure">View Job Listings</a>
+                </li>
+                <li><span>&nbsp&#9670;&nbsp</span></li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">View Settings</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/add">Add A Job</a>
+                        <a class="dropdown-item" href="/secure">Review User Settings</a>
+                        <a class="dropdown-item" href="/secureform">Modify User Settings</a>
+                    </div>
+                </li>
+                <!-- Separator -->
+                <li><span>&nbsp&#9670;&nbsp</span></li>
+                <!-- Search Boxes and Buttons -->
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/processJobByTitle}" method="post">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter Job Title" aria-label="Search By Job Title" name="search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retrieve Job(s)</button>
+                    </form>
+                </li>
+                <li><span>&nbsp&#9670;&nbsp</span></li>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/processUserName}" method="post">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Enter User Last Name" aria-label="Search Username" name="search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retrieve Job(s)</button>
+                    </form>
+                </li>
+                <li><span>&nbsp&#9670;&nbsp</span></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
-<div th:fragment="header">
-    <h2>HEADER</h2>
-</div>
+    <div th:fragment="header">
+        <h2>Job Locator Service</h2>
+    </div>
 
-<div th:fragment="logout">
-    <br />
-    <a href="/logout">Logout</a>
-</div>
+    <div th:fragment="displayInfo">
+        <hr>
+        <div class="row">
+            <div class="col-md-2"><b>Title:</b></div>
+            <div class="col-md-10" th:text="${job.title}"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Posted Date and Time:</b></div>
+            <div class="col-md-10" th:text="${#temporals.format(job.postedDate, 'dd-MM-yyyy HH:mm')}"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Description:</b></div>
+            <div class="col-md-10" th:text="${job.description}"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><b>Name:</b></div>
+            <div class="col-md-2" th:text="${job.getUser().lastName}"></div>
+            <div class="col-md-2"><b>Email:</b></div>
+            <div class="col-md-2" th:text="${user.email}"></div>
+            <div class="col-md-2"><b>Phone:</b></div>
+            <div class="col-md-2" th:text="${user.phoneNumber}"></div>
+        </div>
+    </div>
 
-<div th:fragment="footer">
-    <br />
-    Copyright 2019
-</div>
+    <div th:fragment="logout">
+        <br />
+        <a href="/logout">Logout</a>
+    </div>
 
-<!--Bootstrap JS-->
-<div th:fragment="jsfooter">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</div>
-<!--Bootstrap JS-->
+    <div th:fragment="footer">
+        <br />
+        Copyright 2019
+    </div>
+
+    <!--Bootstrap JS-->
+    <div th:fragment="jsfooter">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous">
+        </script>
+    </div>
+    <!--Bootstrap JS-->
 </body>
 </html>
