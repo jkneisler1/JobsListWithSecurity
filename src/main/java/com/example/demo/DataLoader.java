@@ -39,10 +39,11 @@ public class DataLoader implements CommandLineRunner {
         Set<Job> sj;
 
         // Create users & jobs
+        LocalDateTime ldt = null;
         User user;
         user = new User("pcwaters@email.com", "password", "Paul C.", "Waters", true, "pcwaters", "301-525-7896");
         user.setRoles(Arrays.asList(userRole));
-        job = new Job(LocalDateTime.now(), "Plumber needed", "A backed up sink needs uncloging");
+        job = new Job(ldt.now(), "Plumber needed", "A backed up sink needs uncloging", user);
         sj = new HashSet<Job>();
         sj.add(job);
         user.setJobs(sj);
@@ -50,7 +51,7 @@ public class DataLoader implements CommandLineRunner {
 
         user = new User("tgarten@email.com", "password", "Tony", "Garten", true, "tgarten", "301-555-6789");
         user.setRoles(Arrays.asList(userRole));
-        job = new Job(LocalDateTime.now(), "Wanted Landscaper", "Flower beds need to be cleaned up");
+        job = new Job(ldt.now(), "Wanted Landscaper", "Flower beds need to be cleaned up", user);
         sj = new HashSet<Job>();
         sj.add(job);
         user.setJobs(sj);
@@ -58,17 +59,17 @@ public class DataLoader implements CommandLineRunner {
 
         user = new User("jwoods@email.com", "password", "Joshua", "Woods", true, "jwoods", "301-555-1234");
         user.setRoles(Arrays.asList(userRole));
-        job = new Job(LocalDateTime.now(), "Contractor", "Need an estimate on a kitchen remodel");
+        job = new Job(ldt.now(), "Contractor", "Need an estimate on a kitchen remodel", user);
         sj = new HashSet<Job>();
         sj.add(job);
-        job = new Job(LocalDateTime.now(), "Contractor", "Need an estimate on a bathroom remodel");
+        job = new Job(LocalDateTime.now(), "Contractor", "Need an estimate on a bathroom remodel", user);
         sj.add(job);
         user.setJobs(sj);
         userRepository.save(user);
 
         user = new User("admin@email.com", "password", "Admin", "User", true, "auser", "111-555-9999");
         user.setRoles(Arrays.asList(adminRole));
-        job = new Job(LocalDateTime.now(), "Admin", "Admin");
+        job = new Job(ldt.now(), "Admin", "Admin", user);
         sj = new HashSet<Job>();
         sj.add(job);
         user.setJobs(sj);
@@ -76,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
 
         user = new User("jk@email.com", "password", "John", "Kneisler", true, "jkneisler", "301-555-9999");
         user.setRoles(Arrays.asList(superRole));
-        job = new Job(LocalDateTime.now(), "Supervisor", "Supervisor");
+        job = new Job(ldt.now(), "Supervisor", "Supervisor", user);
         sj = new HashSet<Job>();
         sj.add(job);
         user.setJobs(sj);

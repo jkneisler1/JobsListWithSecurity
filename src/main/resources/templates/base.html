@@ -17,7 +17,7 @@
             <ul class="navbar-nav">
                 <!-- Links -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/secure">View Job Listings</a>
+                    <a class="nav-link" href="/secure">View Job Listings</a>    <!-- Fix This -->
                 </li>
                 <li><span>&nbsp&#9670;&nbsp</span></li>
                 <!-- Dropdown -->
@@ -47,6 +47,10 @@
                 </li>
                 <li><span>&nbsp&#9670;&nbsp</span></li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/secure">View Your Info</a>
+                </li>
+                <li><span>&nbsp&#9670;&nbsp</span></li>
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
             </ul>
@@ -64,7 +68,7 @@
             <div class="col-md-10" th:text="${job.title}"></div>
         </div>
         <div class="row">
-            <div class="col-md-2"><b>Posted Date and Time:</b></div>
+            <div class="col-md-2"><b>Posted Date & Time:</b></div>
             <div class="col-md-10" th:text="${#temporals.format(job.postedDate, 'dd-MM-yyyy HH:mm')}"></div>
         </div>
         <div class="row">
@@ -73,11 +77,11 @@
         </div>
         <div class="row">
             <div class="col-md-2"><b>Name:</b></div>
-            <div class="col-md-2" th:text="${job.getUser().lastName}"></div>
+            <div class="col-md-2" th:text="${job.user.firstName} + ' ' + ${job.user.lastName}"></div>
             <div class="col-md-2"><b>Email:</b></div>
-            <div class="col-md-2" th:text="${user.email}"></div>
+            <div class="col-md-2" th:text="${job.user.email}"></div>
             <div class="col-md-2"><b>Phone:</b></div>
-            <div class="col-md-2" th:text="${user.phoneNumber}"></div>
+            <div class="col-md-2" th:text="${job.user.phoneNumber}"></div>
         </div>
     </div>
 

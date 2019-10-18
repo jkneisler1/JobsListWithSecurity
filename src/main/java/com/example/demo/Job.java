@@ -22,15 +22,17 @@ public class Job {
     private String description;         // Job description
 
     @ManyToOne()
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Job() {
     }
 
-    public Job(LocalDateTime postedDate, String title, String description) {
+    public Job(LocalDateTime postedDate, String title, String description, User user) {
         this.postedDate = postedDate;
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
     public long getId() {

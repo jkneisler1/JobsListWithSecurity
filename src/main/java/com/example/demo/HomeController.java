@@ -97,13 +97,14 @@ public class HomeController {
 
     @PostMapping("/processJobByTitle")
     public String processJobByTitleSearch(Model model, @RequestParam(name="search") String search) {
-        System.out.println(search);
+        // System.out.println(search);
         model.addAttribute("jobs", jobRepository.findJobsByTitleContaining(search));
         return "/list";
     }
 
     @PostMapping("/processUserName")
     public String processCourseByTitleSearch(Model model, @RequestParam(name="search") String search) {
+        System.out.println(search);
         model.addAttribute("users", userRepository.findByUsernameContaining(search));
         return "/list";
     }
