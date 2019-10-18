@@ -11,22 +11,36 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--End Bootstrap CSS-->
 </head>
+<style>
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+}
+</style>
 <body>
     <div th:fragment="navlinks">
         <nav class="navbar navbar-expand-sm bg-light">
+            <a class="navbar-brand" href="#">Jobs-<span style="font-size:30px">&#x1D19;</span>-Us</a>
             <ul class="navbar-nav">
+
                 <!-- Links -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/secure">View Job Listings</a>    <!-- Fix This -->
+                    <a class="nav-link" href="/processAllJobs">View Job Listings</a>
                 </li>
                 <li><span>&nbsp&#9670;&nbsp</span></li>
+
                 <!-- Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">View Settings</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/add">Add A Job</a>
+                        <a class="dropdown-item" href="/addJob">Add A Job</a>
                         <a class="dropdown-item" href="/secure">Review User Settings</a>
-                        <a class="dropdown-item" href="/secureform">Modify User Settings</a>
+                        <!--<a class="dropdown-item" href="/secureform">Modify User Settings</a>-->
                     </div>
                 </li>
                 <!-- Separator -->
@@ -40,7 +54,7 @@
                 </li>
                 <li><span>&nbsp&#9670;&nbsp</span></li>
                 <li class="nav-item">
-                    <form class="form-inline my-2 my-lg-0" th:action="@{/processUserName}" method="post">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/processUserName}" method="post">     <!-- Fix This -->
                         <input class="form-control mr-sm-2" type="search" placeholder="Enter User Last Name" aria-label="Search Username" name="search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retrieve Job(s)</button>
                     </form>
@@ -83,6 +97,21 @@
             <div class="col-md-2"><b>Phone:</b></div>
             <div class="col-md-2" th:text="${job.user.phoneNumber}"></div>
         </div>
+    </div>
+
+    <div th:fragment="addjob">
+        <br />
+        <a href="/addJob">Add A Job</a>
+    </div>
+
+    <div th:fragment="managejob">
+        <br />
+        <a href="/manage">Manage Your Jobs</a>
+    </div>
+
+    <div th:fragment="gotolist">
+        <br />
+        <a href="/">Go To Jobs Listing</a>
     </div>
 
     <div th:fragment="logout">

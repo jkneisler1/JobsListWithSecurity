@@ -12,4 +12,6 @@ public interface JobRepository extends CrudRepository<Job, Long> {
     //ArrayList<Job> findAllByTitleContaining(String title);
     ArrayList<Job> findJobsByTitleContaining(String title);
     ArrayList<Job> findById(long id);
+    ArrayList<Job> findAll();
+    ArrayList<Job> findByUser_LastName(String search);
 }

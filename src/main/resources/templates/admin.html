@@ -12,6 +12,17 @@
           crossorigin="anonymous">
     <!-- END Link to the bootstrap stylesheet -->
 </head>
+<style>
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+}
+</style>
 <body>
     <!-- Navigation Bar -->
     <div th:replace="base :: navlinks"></div>
@@ -27,6 +38,12 @@
         <!-- Process HTML Page -->
 
         <br />
+        <div th:replace="base :: gotolist"></div>
+        <br />
+        <div th:replace="base :: addjob"></div>
+        <br />
+        <div th:replace="base :: managejob"></div>
+        <br />
         <div th:replace="base :: logout"></div>
         <!-- End Process HTML Page-->
 
@@ -37,7 +54,7 @@
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
-    <div th:fragment="jsFooter"></div>
+    <div th:fragment="jsfooter"></div>
     <!-- END JS code -->
 </body>
 </html>

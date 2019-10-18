@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <!-- END Link to the bootstrap stylesheet -->
+</head>
+<style>
+    hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 5px;
+    }
+</style>
+<body>
+<!-- Navigation Bar -->
+<div th:replace="base :: navlinks"></div>
+<!-- End Navigation Bar -->
+
+<div class="container">
+    <!-- Header -->
+    <div th:replace="base :: header"></div>
+    <!-- End Header -->
+
+    <div class="container">
+        <!-- Process HTML Page -->
+        <br />
+        <h4>Users</h4>
+        <div class="row">
+            <div class="col-sm-5">
+                <table>
+                    <tr>
+                        <th>User Name</th>
+                    </tr>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.lastName}"></td>
+                        <td>
+                            <a th:href="@{update_user/{id}(id=${user.userID})}">Update</a>
+                            <a th:href="@{detail_user/{id}(id=${user.userID})}">Details</a>
+                            <a th:href="@{delete_user/{id}(id=${user.userID})}">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <div class="col-sm-7">
+                <h4>Jobs</h4>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date & Time</th>
+                        <th>Description</th>
+                    </tr>
+
+                    <tr th:each="job : ${jobs}">
+                        <td th:text="${job.title}"></td>
+                        <td th:text="${job.postedDate}"></td>
+                        <td th:text="${job.description}"></td>
+                        <td>
+                            <a th:href="@{update_job/{id}(id=${job.jobID})}">Update</a>
+                            <a th:href="@{detail_job/{id}(id=${job.jobID})}">Details</a>
+                            <a th:href="@{delete_job/{id}(id=${job.jobID})}">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End Process HTML Page-->
+
+    <!-- Footer -->
+    <div th:replace="base :: footer"></div>
+    <!-- End Footer -->
+</div>
+
+<!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
+<div th:replace="base :: jsfooter"></div>
+<!-- END JS code -->
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <!-- Link to the bootstrap stylesheet:  insert this just before the </head> tag  (this version fits on a page) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <!-- END Link to the bootstrap stylesheet -->
+</head>
+<style>
+    hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 5px;
+    }
+</style>
+<body>
+<!-- Navigation Bar -->
+<div th:replace="base :: navlinks"></div>
+<!-- End Navigation Bar -->
+
+<div class="container">
+    <!-- Header -->
+    <div th:replace="base :: header"></div>
+    <!-- End Header -->
+
+    <div class="container">
+        <!-- Process HTML Page -->
+        <br />
+        <h4>Users</h4>
+        <div class="row">
+            <div class="col-sm-5">
+                <b>Input Your Password:</b>
+            </div>
+            <div class="col-sm-7">
+                <form action="/managetest">
+                    <input type="password" name="pwd" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Process HTML Page-->
+
+    <!-- Footer -->
+    <div th:replace="base :: footer"></div>
+    <!-- End Footer -->
+</div>
+
+<!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
+<div th:replace="base :: jsfooter"></div>
+<!-- END JS code -->
+</body>
+</html>

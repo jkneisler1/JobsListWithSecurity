@@ -11,6 +11,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Long countByEmail(String email);
     Long countByUsername(String username);
     User findByUsername(String username);
+    Boolean findByPasswordEquals(String pwd);
     ArrayList<Role> findByRolesContaining(String search);
     //Role findByRolesContaining(String username);
 }

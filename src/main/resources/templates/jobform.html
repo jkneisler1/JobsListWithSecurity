@@ -12,6 +12,17 @@
           crossorigin="anonymous">
     <!-- END Link to the bootstrap stylesheet -->
 </head>
+<style>
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+}
+</style>
 <body>
     <!-- Navigation Bar -->
     <div th:replace="base :: navlinks"></div>
@@ -20,11 +31,32 @@
     <div class="container">
         <!-- Header -->
         <h2>Jobs Form Page</h2>
-        <a href="/secure">Secure Page</a>
+        <br />
         <!-- End Header -->
 
         <!-- Process HTML Page -->
+        <form th:action="@{/processJob}" th:object="${job}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{postedDate}" />
+            <div class="row">
+                <div class="col-md-3"><b>Title:</b></div>
+                <div class="col-md-9"><label for="title">Title</label><input id="title" type="text" placeholder="Title" th:field="*{title}" /></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"><b>Posted Date and Time:</b></div>
+                <div class="col-md-9"><label for="date">Date</label><input id="date" type="datetime-local" th:field="*{postedDate}" name="postedDate" /></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3"><b>Description:</b></div>
+                <div class="col-md-9"><label for="desc">Description</label><textarea id="desc" rows="3" cols="50" th:field="*{description}"></textarea></div>
+            </div>
+            <br /><br />
 
+            <input type="submit" onclick="alerts()" value="Submit">
+        </form>
+        <hr>
         <br />
         <div th:replace="base ::logout"></div>
         <!-- End Process HTML Page -->
@@ -35,7 +67,7 @@
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
-    <div th:fragment="jsFooter"></div>
+    <div th:fragment="jsfooter"></div>
         <!-- END JS code -->
 </body>
 </html>

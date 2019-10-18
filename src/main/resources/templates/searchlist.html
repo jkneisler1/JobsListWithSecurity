@@ -12,30 +12,49 @@
           crossorigin="anonymous">
     <!-- END Link to the bootstrap stylesheet -->
 </head>
+<style>
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+}
+</style>
 <body>
-<!-- Navigation Bar -->
-<div th:replace="base :: navlinks"></div>
-<!-- End Navigation Bar -->
+    <!-- Navigation Bar -->
+    <div th:replace="base :: navlinks"></div>
+    <!-- End Navigation Bar -->
 
-<div class="container">
-    <!-- Header -->
-    <h2>Jobs List Page</h2>
-    <a href="/secure">Secure Page</a>
-    <!-- End Header -->
+    <div class="container">
+        <!-- Header -->
+        <h2>Jobs List Page</h2>
+        <a href="/secure">Secure Page</a>
+        <!-- End Header -->
 
-    <!-- Process HTML Page -->
+        <!-- Process HTML Page -->
+        <div th:each="job : ${jobs}">
+            <div th:replace="base :: displayInfo"></div>
+        </div>
+        <br />
+        <hr>
+        <br />
+        <div th:replace="base :: addjob"></div>
+        <br />
+        <div th:replace="base :: managejob"></div>
+        <br />
+        <div th:replace="base ::logout"></div>
+        <!-- End Process HTML Page -->
 
-    <br />
-    <div th:replace="base ::logout"></div>
-    <!-- End Process HTML Page -->
+        <!-- Footer -->
+        <div th:replace="base :: footer"></div>
+        <!-- End Footer -->
+    </div>
 
-    <!-- Footer -->
-    <div th:replace="base :: footer"></div>
-    <!-- End Footer -->
-</div>
-
-<!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
-<div th:fragment="jsFooter">
-    <!-- END JS code -->
+    <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
+    <div th:fragment="jsfooter">
+        <!-- END JS code -->
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,13 +48,33 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String index() {
-        return "index";
+    public String listJobs(Model model) {
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "/list";
     }
 
+
+    @RequestMapping("/login")
+    public String login() { return "login"; }
+
+    /*
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "/processAllJobs";
+    }
+     */
+
+    @RequestMapping("/manage")
+    public String manage() { return "managepwd"; }
+
+    @RequestMapping("/managetest")
+    public String managetest(Model model, @RequestParam(name="pwd") String pwd) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String input_pwd = passwordEncoder.encode(pwd);
+        if (userRepository.findByPasswordEquals(pwd)) {
+            return "manageall";
+        }
+        return "list";
     }
 
     @RequestMapping("/secure")
@@ -86,6 +107,35 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/processAllJobs")
+    public String processAllJobsGet(Model model) {
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "/searchlist";
+    }
+
+    @PostMapping("/processAllJobs")
+    public String processAllJobsSearch(Model model) {
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "/searchlist";
+    }
+
+    /* The next method process requests from the nav-bar dropdown list to add jobs */
+    @GetMapping("/addJob")
+    public String processAddJob(Model model) {
+        model.addAttribute("job", new Job());
+        return "jobform";
+    }
+
+    @PostMapping("/processJob")
+    public String processCarForm(@Valid Job job, BindingResult result) {
+        if (result.hasErrors()) {
+            return "jobform";
+        }
+        jobRepository.save(job);
+
+        return "redirect:/searchlist";
+    }
+
     @PostMapping("/processUser")
     public String processUser(@Valid User user, BindingResult result)  {
         if (result.hasErrors()) {
@@ -103,9 +153,9 @@ public class HomeController {
     }
 
     @PostMapping("/processUserName")
-    public String processCourseByTitleSearch(Model model, @RequestParam(name="search") String search) {
-        System.out.println(search);
-        model.addAttribute("users", userRepository.findByUsernameContaining(search));
+    public String processUserNameSearch(Model model, @RequestParam(name="search") String search) {
+        // System.out.println(search);
+        model.addAttribute("jobs", jobRepository.findByUser_LastName(search));
         return "/list";
     }
 

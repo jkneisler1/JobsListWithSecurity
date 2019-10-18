@@ -40,12 +40,17 @@ hr {
             <h4><i>Search Job Results</i></h4>
             <br />
             <div th:each="job : ${jobs}">
+                <br />
                 <div th:replace="base :: displayInfo"></div>
             </div>
             <br />
             <hr>
             <!-- <div th:replace="base :: userSearch"></div> -->
         </div>
+        <br />
+        <div th:replace="base :: addjob"></div>
+        <br />
+        <div th:replace="base :: managejob"></div>
         <br />
         <div th:replace="base :: logout"></div>
         <!-- End Process HTML Page -->
@@ -56,7 +61,8 @@ hr {
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <div th:replace="base :: jsfooter"></div>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous">
     </script>
@@ -67,7 +73,7 @@ hr {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous">
-    </script>
+    </script> -->
     <!-- END JS code -->
 </body>
 </html>

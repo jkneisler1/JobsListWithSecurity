@@ -12,6 +12,17 @@
           crossorigin="anonymous">
     <!-- END Link to the bootstrap stylesheet -->
 </head>
+<style>
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 5px;
+}
+</style>
 <body>
     <!-- Navigation Bar -->
     <div th:replace="base :: navlinks"></div>
@@ -38,7 +49,7 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-md-2"><input type="submit" value="Sign in" /></div>
+                <div class="col-md-10"><input type="submit" value="Sign in" /></div>
             </div>
         </form>
         <br /><br />
@@ -52,7 +63,7 @@
     </div>
 
     <!-- JS code: insert this just before the </body> tag  (this version fits on a page) -->
-    <div th:fragment="jsFooter"></div>
+    <div th:fragment="jsfooter"></div>
     <!-- END JS code -->
 </body>
 </html>
