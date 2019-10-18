@@ -62,16 +62,17 @@ hr {
                         <th>Date & Time</th>
                         <th>Description</th>
                     </tr>
-
-                    <tr th:each="job : ${jobs}">
-                        <td th:text="${job.title}"></td>
-                        <td th:text="${job.postedDate}"></td>
-                        <td th:text="${job.description}"></td>
-                        <td>
-                            <a th:href="@{update_job/{id}(id=${job.jobID})}">Update</a>
-                            <a th:href="@{detail_job/{id}(id=${job.jobID})}">Details</a>
-                            <a th:href="@{delete_job/{id}(id=${job.jobID})}">Delete</a>
-                        </td>
+                    <tr th:each="user : ${users}">
+                        <tr th:each="job : ${user.jobs}">
+                            <td th:text="${job.title}"></td>
+                            <td th:text="${job.postedDate}"></td>
+                            <td th:text="${job.description}"></td>
+                            <td>
+                                <a th:href="@{update_job/{id}(id=${job.jobID})}">Update</a>
+                                <a th:href="@{detail_job/{id}(id=${job.jobID})}">Details</a>
+                                <a th:href="@{delete_job/{id}(id=${job.jobID})}">Delete</a>
+                            </td>
+                        </tr>
                     </tr>
                 </table>
             </div>

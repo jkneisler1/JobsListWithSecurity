@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.BindException;
 import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class HomeController {
@@ -69,17 +70,18 @@ public class HomeController {
 
     @RequestMapping("/managetest")
     public String managetest(Model model, @RequestParam(name="pwd") String pwd) {
-        System.out.println(pwd);
+        System.out.println("Plain text: " + pwd);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String input_pwd = passwordEncoder.encode(pwd);
-        System.out.println(input_pwd);
-        User usr = userRepository.findByPasswordMatches(input_pwd);
-        if (userRepository.findByPasswordEquals(input_pwd)) {
-            model.addAttribute("user", userRepository.findByPasswordMatches(input_pwd));
-            model.addAttribute("job", jobRepository.findByUser_Id(usr.getId()));
+        System.out.println("Encrypted " + input_pwd);
+        ArrayList<User> usrs = userRepository.findByPassword(input_pwd);
+        //System.out.println(usr.getEmail());
+        //if (userRepository.findByPasswordEquals(input_pwd)) {
+            model.addAttribute("users", usrs);
+            //model.addAttribute("jobs", jobRepository.findByUser_Id(usr.getId()));
             return "manageall";
-        }
-        return "list";
+        //}
+        //return "list";
     }
 
     @RequestMapping("/secure")

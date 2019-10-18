@@ -12,7 +12,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
     // Long countByUsername(String username);
     User findByUsername(String username);
     Boolean findByPasswordEquals(String pwd);
-    User findByPasswordMatches(String pwd);
+    ArrayList<User> findByPassword(String pwd);
     ArrayList<Role> findByRolesContaining(String search);
     //Role findByRolesContaining(String username);
 }
